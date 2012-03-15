@@ -10,6 +10,9 @@ public class Quiz {
 		MultipleChoice(3);
 		
 		private int index;
+		public int getIndex() {
+			return index;
+		}
 		QuizType(int index) {
 			this.index = index ;
 		}
