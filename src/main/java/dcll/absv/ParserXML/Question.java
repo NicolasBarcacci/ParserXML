@@ -17,9 +17,9 @@ public class Question {
 		}
 	};
 	
-	QuestionType type;				// le type de question
+	QuestionType type;				// le type de question.
 	String text;					// intitulé de la question
 	Integer penalty;				// pts de pénalité si réponse fausse
 	Integer defaultgrade;			// pts accordés si bonne réponse
-	ArrayList<Reponse>	reponses; 	// les réponses possibles
+	ArrayList<Reponse>	reponses; 	// les réponses possibles.
 }
