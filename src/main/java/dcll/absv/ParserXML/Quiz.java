@@ -3,6 +3,8 @@ package dcll.absv.ParserXML;
 import java.util.ArrayList;
 import java.io.File;
 
+import javax.swing.text.html.parser.Element;
+
 public class Quiz {
 	
 	File fichierXML;
@@ -21,6 +23,11 @@ public class Quiz {
 	
 	public void openFile(String _file){
 		
+		Element parent = new Element("parent", 1);
+		   Element child = new Element("child", 0);
+		   parent.appendChild(child);
+		   Nodes results = child.query("/*");
+		   Node result = result.get(0);
 	}
 	
 	public IQuestion getQuestion(int _n){
