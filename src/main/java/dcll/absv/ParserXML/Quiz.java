@@ -8,13 +8,10 @@ import javax.swing.text.html.parser.Element;
 public class Quiz {
 	
 	File fichierXML;
-	ArrayList<Question> questions;		// la liste des questions
 	
 	ArrayList<IQuestion> questions1;
 	
-	public Quiz(ArrayList<Question> questions) {
-		super();
-		this.questions = questions;
+	public Quiz() {
 	}
 	
 	public void toXML(){

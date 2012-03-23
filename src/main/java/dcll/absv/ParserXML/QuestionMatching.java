@@ -16,16 +16,6 @@ public class QuestionMatching extends QuestionClasseIntermediaire{
         subquestion = new String[4][2];
     }
     
-    public QuestionMatching(String xml){
-        super("","","","","","","","","");
-        subquestion = new String[4][2];
-    }
-    
-   public QuestionMatching(String _name, String _questionTextFormat, String _questionTextText, String _generalFeedBack, String _shuffleAnswer, String _defaultGrade, String _penalty, String _hidden, String _image){
-        super(_name,_questionTextFormat,_questionTextText,_generalFeedBack,_shuffleAnswer,_defaultGrade,_penalty,_hidden,_image);
-        subquestion = new String[4][2];
-   }
-    
    public String getSubquestionXText(int i){
 	   if(i<4){
 		   return subquestion[i][0];
@@ -59,4 +49,8 @@ public class QuestionMatching extends QuestionClasseIntermediaire{
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
+    public void importXML(String _xml) {
+		// TODO Auto-generated method stub
+		
+	}
 }

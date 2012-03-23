@@ -21,21 +21,15 @@ public class QuestionDescription extends QuestionCloze{
         hidden="";
     }
     
-    public QuestionDescription(String xml){
-        super("","","","","");
-    }
-
-    public QuestionDescription(String _name, String _questionTextFormat, String _questionTextText, String _generalFeedBack, String _shuffleAnswer, String _defaultGrade, String _penalty, String _hidden){
-        super(_name,_questionTextFormat,_questionTextText,_generalFeedBack,_shuffleAnswer);
-        defaultGrade=_defaultGrade;
-        penalty=_penalty;
-        hidden=_hidden;
-    }
-    
     @Override
     public String toXML() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    
+    public void importXML(String _xml) {
+		// TODO Auto-generated method stub
+		
+	}
     
     public String getDefaulGrade(){
         return defaultGrade;

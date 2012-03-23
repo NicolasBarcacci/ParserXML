@@ -30,5 +30,10 @@ public class QuestionCategory implements IQuestion{
     public String toXML() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+	public void importXML(String _xml) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

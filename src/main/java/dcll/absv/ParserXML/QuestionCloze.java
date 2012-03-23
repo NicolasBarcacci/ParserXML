@@ -21,22 +21,15 @@ public class QuestionCloze implements IQuestion{
         questionText[1]="";
         
     }
-
-    public QuestionCloze(String _xml){
-        
-    }
-    
-    public QuestionCloze(String _name, String _questionTextFormat, String _questionTextText, String _generalFeedBack, String _shuffleAnswer){
-        name=_name;
-        questionText[0]=_questionTextFormat;
-        questionText[1]=_questionTextText;
-        generalFeedBack=_generalFeedBack;
-        shuffleAnswer=_shuffleAnswer;
-    }
     
     public String toXML() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    
+    public void importXML(String _xml) {
+		// TODO Auto-generated method stub
+		
+	}
     
     public String getName(){
         return name;

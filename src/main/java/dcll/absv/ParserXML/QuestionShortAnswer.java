@@ -17,16 +17,6 @@ public class QuestionShortAnswer extends QuestionClasseIntermediaire{
         answer = new String[2][3];
     }
     
-    public QuestionShortAnswer(String xml){
-        super("","","","","","","","","");
-        answer = new String[2][3];
-    }
-    
-   public QuestionShortAnswer(String _name, String _questionTextFormat, String _questionTextText, String _generalFeedBack, String _shuffleAnswer, String _defaultGrade, String _penalty, String _hidden, String _image){
-        super(_name,_questionTextFormat,_questionTextText,_generalFeedBack,_shuffleAnswer,_defaultGrade,_penalty,_hidden,_image);
-        answer = new String[2][3];
-   }
-    
    public String getAnswerXFraction(int i){
 	   if(i<2){
 		   return answer[i][0];   
@@ -73,4 +63,9 @@ public class QuestionShortAnswer extends QuestionClasseIntermediaire{
     public String toXML() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    
+    public void importXML(String _xml) {
+		// TODO Auto-generated method stub
+		
+	}
 }

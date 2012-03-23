@@ -10,4 +10,5 @@ package dcll.absv.ParserXML;
  */
 public interface IQuestion {
     public String toXML();
+    public void importXML(String _xml);
 }
