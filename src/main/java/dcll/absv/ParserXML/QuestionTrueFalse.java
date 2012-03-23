@@ -9,42 +9,45 @@ package dcll.absv.ParserXML;
  * @author Nicolas
  */
 public class QuestionTrueFalse extends QuestionClasseIntermediaire{
-    private String[] answer; //De type string en attendant de définir les answer
+    private String answerTrue; 
+    private String answerFalse;
     
     public QuestionTrueFalse(){
         super();
-        answer = new String[2];
-        answer[0]="";
-        answer[1]="";
+        answerTrue="";
+        answerFalse="";
     }
     
     public QuestionTrueFalse(String xml){
         super("","","","","","","","","");
-        answer = new String[2];
+        answerTrue="";
+        answerFalse="";
     }
     
    public QuestionTrueFalse(String _name, String _questionTextFormat, String _questionTextText, String _generalFeedBack, String _shuffleAnswer, String _defaultGrade, String _penalty, String _hidden, String _image){
         super(_name,_questionTextFormat,_questionTextText,_generalFeedBack,_shuffleAnswer,_defaultGrade,_penalty,_hidden,_image);
-    }
+        answerTrue="";
+        answerFalse="";
+   }
     
     @Override
     public String toXML() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    public String getAnswer1(){
-        return answer[0];
+    public String getAnswerTrueFeedBack(){
+        return answerTrue;
     }
     
-    public String getAnswer2(){
-        return answer[1];
+    public String getAnswerFalseFeedBack(){
+    	return answerFalse;
     }
     
-    public void setAnswer1(String _answer){
-        answer[0]=_answer;
+    public void setAnswerTrueFeedBack(String _answer){
+        answerTrue =_answer;
     }
     
-    public void setAnswer2(String _answer){
-        answer[1]=_answer;
+    public void setAnswerFalseFeedBack(String _answer){
+        answerTrue =_answer;
     }
 }
