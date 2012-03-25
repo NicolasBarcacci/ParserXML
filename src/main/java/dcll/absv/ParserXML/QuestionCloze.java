@@ -1,4 +1,5 @@
 /*
+
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -71,5 +72,11 @@ public class QuestionCloze implements IQuestion{
     
     public void setShuffleAnswer(String _shuffleAnswer){
         shuffleAnswer=_shuffleAnswer;
+    }
+    
+    public static Element getElementText(String label){
+    	Element text = new Element("text");
+    	text.appendChild(label);
+    	return text;
     }
 }
