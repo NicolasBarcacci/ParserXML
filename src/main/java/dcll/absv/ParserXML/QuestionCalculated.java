@@ -4,6 +4,8 @@
  */
 package dcll.absv.ParserXML;
 
+import nu.xom.*;
+
 /**
  *
  * @author Nicolas
@@ -14,7 +16,7 @@ public class QuestionCalculated extends QuestionClasseIntermediaire{
     }
     
     @Override
-    public String toXML() {
+    public Element toXML() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

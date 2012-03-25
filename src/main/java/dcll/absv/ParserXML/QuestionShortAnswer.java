@@ -4,13 +4,15 @@
  */
 package dcll.absv.ParserXML;
 
+import nu.xom.*;
+
 /**
  *
  * @author Nicolas
  */
 public class QuestionShortAnswer extends QuestionClasseIntermediaire{
 
-    private String[][] answer; //[fraction,text,feedback] pour chaque réponse
+    private String[][] answer; //[fraction,text,feedback] pour chaque rï¿½ponse
     
     public QuestionShortAnswer(){
         super();
@@ -60,7 +62,7 @@ public class QuestionShortAnswer extends QuestionClasseIntermediaire{
    }
 
     @Override
-    public String toXML() {
+    public Element toXML() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

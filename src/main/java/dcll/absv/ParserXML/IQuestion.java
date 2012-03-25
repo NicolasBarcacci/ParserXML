@@ -4,11 +4,13 @@
  */
 package dcll.absv.ParserXML;
 
+import nu.xom.*;
+
 /**
  *
  * @author Nicolas
  */
 public interface IQuestion {
-    public String toXML();
+    public Element toXML();
     public void importXML(String _xml);
 }

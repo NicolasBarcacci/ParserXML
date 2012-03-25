@@ -4,6 +4,8 @@
  */
 package dcll.absv.ParserXML;
 
+import nu.xom.Element;
+
 /**
  *
  * @author Nicolas
@@ -27,7 +29,7 @@ public class QuestionCategory implements IQuestion{
         category=_category;
     }
 
-    public String toXML() {
+    public Element toXML() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

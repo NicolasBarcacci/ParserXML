@@ -1,9 +1,11 @@
 package dcll.absv.ParserXML;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.io.File;
+import java.io.IOException;
 
-import javax.swing.text.html.parser.Element;
+import nu.xom.*;
 
 public class Quiz {
 	
@@ -16,15 +18,33 @@ public class Quiz {
 	
 	public void toXML(){
 		
+		Element quiz = new Element("quiz");
+		for (Iterator<IQuestion> iterator = questions1.iterator(); iterator.hasNext();) {
+			IQuestion question = (IQuestion) iterator.next();
+			quiz.appendChild(question.toXML());
+		}
+		  
+		Document doc = new Document(quiz);
+	    try {
+	      Serializer serializer = new Serializer(System.out, "ISO-8859-1");
+	      serializer.setIndent(4);
+	      serializer.setMaxLength(64);
+	      serializer.write(doc);  
+	    }
+	    catch (IOException ex) {
+	       System.err.println(ex); 
+	    }  
+		
+		
 	}
 	
 	public void openFile(String _file){
 		
-		Element parent = new Element("parent", 1);
-		   Element child = new Element("child", 0);
-		   parent.appendChild(child);
-		   Nodes results = child.query("/*");
-		   Node result = result.get(0);
+//		Element parent = new Element("parent", 1);
+//		   Element child = new Element("child", 0);
+//		   parent.appendChild(child);
+//		   Nodes results = child.query("/*");
+//		   Node result = result.get(0);
 	}
 	
 	public IQuestion getQuestion(int _n){
