@@ -25,6 +25,7 @@ public class QuestionTrueFalse extends QuestionClasseIntermediaire{
         Element eQuestion = new Element("question");
         Attribute aTypeQuestion = new Attribute("type","truefalse");
         eQuestion.addAttribute(aTypeQuestion);
+        this.addNameAndQuestionText(eQuestion);
         
         Element eFeedbackCorrect = new Element("feedback");
         eFeedbackCorrect.appendChild(QuestionCloze.getElementText("Correct !"));
@@ -39,7 +40,7 @@ public class QuestionTrueFalse extends QuestionClasseIntermediaire{
         eFalse.appendChild(QuestionCloze.getElementText("false"));
 
         
-        if (this.answerTrue=="true") {
+        if (this.answerTrue=="100") {
        	 Attribute aTrueFraction = new Attribute("fraction","100");
             Attribute aFalseFraction = new Attribute("fraction","0");
 			eTrue.appendChild(eFeedbackCorrect);

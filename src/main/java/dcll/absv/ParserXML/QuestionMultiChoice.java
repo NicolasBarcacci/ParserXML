@@ -98,6 +98,7 @@ public class QuestionMultiChoice extends QuestionClasseIntermediaire{
 		   answer[i][2]=_feedBack;
 	   }
    }
+   
     @Override
     public Element toXML() {
         throw new UnsupportedOperationException("Not supported yet.");

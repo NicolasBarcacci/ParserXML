@@ -26,8 +26,39 @@ public class QuestionCloze implements IQuestion{
     }
     
     public Element toXML() {
-        throw new UnsupportedOperationException("Not supported yet.");
+       Element eQuestion = new Element("question");
+       Attribute aTypeQuestion = new Attribute("type","cloze");
+       eQuestion.addAttribute(aTypeQuestion);
+       addNameAndQuestionText(eQuestion);
+       
+       Element eGeneralFeedback;
+       if (this.generalFeedBack!="") {
+		eGeneralFeedback = new Element("generalfeedback");
+		eGeneralFeedback.appendChild(QuestionCloze
+				.getElementText(this.generalFeedBack));
+		eQuestion.appendChild(eGeneralFeedback);
+       }
+       
+       if (this.shuffleAnswer!="") {
+		Element eShuffleAnswer = new Element("shuffleanswer");
+		eShuffleAnswer.appendChild(this.shuffleAnswer);
+		eQuestion.appendChild(eShuffleAnswer);
+	}
+       
+       return eQuestion;
     }
+
+	protected void addNameAndQuestionText(Element eQuestion) {
+		Element eName = new Element("name");
+		   eName.appendChild(QuestionCloze.getElementText(this.name));
+		   eQuestion.appendChild(eName);
+		   Element eQuestionText = new Element("questiontext");
+		   if (this.questionText[0]!="") {
+			Attribute aFormatQuestionText = new Attribute("format",this.questionText[0]);
+			eQuestionText.addAttribute(aFormatQuestionText);
+		}
+		   eQuestionText.appendChild(QuestionCloze.getElementText(this.questionText[1]));
+	}
     
     public void importXML(String _xml) {
 		// TODO Auto-generated method stub
