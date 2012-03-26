@@ -4,6 +4,9 @@
  */
 package dcll.absv.ParserXML;
 
+import nu.xom.Attribute;
+import nu.xom.Element;
+
 /**
  *
  * @author Nicolas
@@ -23,5 +26,22 @@ public abstract class QuestionClasseIntermediaire extends QuestionDescription{
     
     public void setImage(String _image){
         image=_image;
+    }
+    
+    @Override
+    protected void addSpecificTags(Element eQuestion) {
+    	// TODO Auto-generated method stub
+    	super.addSpecificTags(eQuestion);
+
+    	Attribute aTypeQuestion = eQuestion.getAttribute("type");
+    	if (aTypeQuestion!=null) {
+			eQuestion.removeAttribute(aTypeQuestion);
+		}
+    	
+    	if (this.image!="") {
+			Element eImage = new Element("image");
+			eImage.appendChild(this.image);
+			eQuestion.appendChild(eImage);
+		}
     }
 }

@@ -61,12 +61,24 @@ public class QuestionShortAnswer extends QuestionClasseIntermediaire{
 	   }
    }
 
-    @Override
-    public Element toXML() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
     
-    public void importXML(String _xml) {
+    
+    @Override
+protected void addSpecificTags(Element eQuestion) {
+	super.addSpecificTags(eQuestion);
+	//Suppression du type de la classe mère
+	Attribute aTypeQuestion = eQuestion.getAttribute("type");
+	if (aTypeQuestion!=null) {
+		eQuestion.removeAttribute(aTypeQuestion);
+	}
+	//ajoute de son type
+	aTypeQuestion = new Attribute("type", "shortanswer");
+	eQuestion.addAttribute(aTypeQuestion);
+	
+	// TODO Ajout des réponses
+}
+
+	public void importXML(String _xml) {
 		// TODO Auto-generated method stub
 		
 	}

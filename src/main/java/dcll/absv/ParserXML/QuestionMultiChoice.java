@@ -103,17 +103,46 @@ public class QuestionMultiChoice extends QuestionClasseIntermediaire{
     
     @Override
 	protected void addSpecificTags(Element eQuestion) {
-    	   Attribute aTypeQuestion = new Attribute("type", "multichoice");
-           eQuestion.addAttribute(aTypeQuestion);
-           
-           if (this.image64!="") {
-   			Element eImage64 = new Element("image64");
-   			eImage64.appendChild(image64);
-   			eQuestion.appendChild(eImage64);
-   		}
-           if (this.correctFeedBack!="") {
-   			Element eCorrectFeedBack;
-   		}
+    	//récupere les tags de la/les classe(s) mère(s)
+    	super.addSpecificTags(eQuestion);
+    	//Suppression du type de la classe mère
+    	Attribute aTypeQuestion = eQuestion.getAttribute("type");
+    	if (aTypeQuestion!=null) {
+			eQuestion.removeAttribute(aTypeQuestion);
+		}
+    	//ajout de son type
+    	aTypeQuestion = new Attribute("type", "multichoice");
+		eQuestion.addAttribute(aTypeQuestion);
+       
+       if (this.image64!="") {
+		Element eImage64 = new Element("image64");
+		eImage64.appendChild(image64);
+		eQuestion.appendChild(eImage64);
+	}
+       if (this.correctFeedBack!="") {
+		Element eCorrectFeedBack = new Element("correctfeedback");
+		eCorrectFeedBack.appendChild(this.correctFeedBack);
+		eQuestion.appendChild(eCorrectFeedBack);
+	}
+       
+       if (this.partiallyCorrectFeedBack!="") {
+		Element ePartiallyCorrectFeedBack = new Element("partiallyCorrectFeedBack");
+		ePartiallyCorrectFeedBack.appendChild(partiallyCorrectFeedBack);
+		eQuestion.appendChild(ePartiallyCorrectFeedBack);
+	}
+       
+       if (this.incorrectFeedBack!="") {
+		Element eIncorrectFeedBack = new Element("incorrectfeedback");
+		eIncorrectFeedBack.appendChild(incorrectFeedBack);
+		eQuestion.appendChild(eIncorrectFeedBack);
+	}
+       if (this.answernumbering!="") {
+		Element eAnswernumbering = new Element("answernumbering");
+		eAnswernumbering.appendChild(answernumbering);
+		eQuestion.appendChild(eAnswernumbering);
+	}
+       
+       // TODO Ajout des réponses
 	}
 
 	public void importXML(String _xml) {

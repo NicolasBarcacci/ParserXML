@@ -52,10 +52,11 @@ public class QuestionNumerical extends QuestionClasseIntermediaire{
 	   answer[3]=_feedBack;
    }
    
-    @Override
-    public Element toXML() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+   @Override
+protected void addSpecificTags(Element eQuestion) {
+	// TODO Auto-generated method stub
+	super.addSpecificTags(eQuestion);
+}
     
     public void importXML(String _xml) {
 		// TODO Auto-generated method stub

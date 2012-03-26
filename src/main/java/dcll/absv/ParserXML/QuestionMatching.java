@@ -46,10 +46,12 @@ public class QuestionMatching extends QuestionClasseIntermediaire{
 		   subquestion[i][1]=_answer;
 	   }
    }
-    @Override
-    public Element toXML() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+   
+   @Override
+protected void addSpecificTags(Element eQuestion) {
+	// TODO Auto-generated method stub
+	super.addSpecificTags(eQuestion);
+}
     
     public void importXML(String _xml) {
 		// TODO Auto-generated method stub
