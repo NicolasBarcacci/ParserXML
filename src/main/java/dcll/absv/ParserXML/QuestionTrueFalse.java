@@ -21,48 +21,45 @@ public class QuestionTrueFalse extends QuestionClasseIntermediaire{
     }
     
     @Override
-    public Element toXML() {
-        Element eQuestion = new Element("question");
-        Attribute aTypeQuestion = new Attribute("type","truefalse");
-        eQuestion.addAttribute(aTypeQuestion);
-        this.addNameAndQuestionText(eQuestion);
-        
-        Element eFeedbackCorrect = new Element("feedback");
-        eFeedbackCorrect.appendChild(QuestionCloze.getElementText("Correct !"));
-        
-        Element eFeedbackWrong = new Element("feedback");
-        eFeedbackWrong.appendChild(QuestionCloze.getElementText("Oops !"));
-        
-        Element eTrue = new Element("true");
-        eTrue.appendChild(QuestionCloze.getElementText("true"));
-       
-        Element eFalse = new Element("false");
-        eFalse.appendChild(QuestionCloze.getElementText("false"));
+	protected void addSpecificTags(Element eQuestion) {
 
+    	 Attribute aTypeQuestion = new Attribute("type","truefalse");
+         eQuestion.addAttribute(aTypeQuestion);
+         
+         Element eFeedbackCorrect = new Element("feedback");
+         eFeedbackCorrect.appendChild(QuestionCloze.getElementText("Correct !"));
+         
+         Element eFeedbackWrong = new Element("feedback");
+         eFeedbackWrong.appendChild(QuestionCloze.getElementText("Oops !"));
+         
+         Element eTrue = new Element("true");
+         eTrue.appendChild(QuestionCloze.getElementText("true"));
         
-        if (this.answerTrue=="100") {
-       	 Attribute aTrueFraction = new Attribute("fraction","100");
-            Attribute aFalseFraction = new Attribute("fraction","0");
-			eTrue.appendChild(eFeedbackCorrect);
-			eFalse.appendChild(eFeedbackWrong);
-	        eTrue.addAttribute(aTrueFraction);
-	        eFalse.addAttribute(aFalseFraction);
-		} else {
-			Attribute aTrueFraction = new Attribute("fraction","0");
+         Element eFalse = new Element("false");
+         eFalse.appendChild(QuestionCloze.getElementText("false"));
+
+         
+         if (this.answerTrue=="100") {
+         	Attribute aTrueFraction = new Attribute("fraction","100");
+             Attribute aFalseFraction = new Attribute("fraction","0");
+ 			eTrue.appendChild(eFeedbackCorrect);
+ 			eFalse.appendChild(eFeedbackWrong);
+ 	        eTrue.addAttribute(aTrueFraction);
+ 	        eFalse.addAttribute(aFalseFraction);
+ 		} else {
+ 			Attribute aTrueFraction = new Attribute("fraction","0");
             Attribute aFalseFraction = new Attribute("fraction","100");
-			eTrue.appendChild(eFeedbackWrong);
-			eFalse.appendChild(eFeedbackCorrect);
-	        eTrue.addAttribute(aTrueFraction);
-	        eFalse.addAttribute(aFalseFraction);
-		}
-        
-        eQuestion.appendChild(eFalse);
-		eQuestion.appendChild(eTrue);
+ 			eTrue.appendChild(eFeedbackWrong);
+ 			eFalse.appendChild(eFeedbackCorrect);
+ 	        eTrue.addAttribute(aTrueFraction);
+ 	        eFalse.addAttribute(aFalseFraction);
+ 		}
+         
+         eQuestion.appendChild(eFalse);
+ 		eQuestion.appendChild(eTrue);
+	}
 
-        return eQuestion;
-    }
-    
-    public void importXML(String _xml) {
+	public void importXML(String _xml) {
 		// TODO Auto-generated method stub
 		
 	}

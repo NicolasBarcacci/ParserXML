@@ -99,12 +99,24 @@ public class QuestionMultiChoice extends QuestionClasseIntermediaire{
 	   }
    }
    
-    @Override
-    public Element toXML() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
     
-    public void importXML(String _xml) {
+    
+    @Override
+	protected void addSpecificTags(Element eQuestion) {
+    	   Attribute aTypeQuestion = new Attribute("type", "multichoice");
+           eQuestion.addAttribute(aTypeQuestion);
+           
+           if (this.image64!="") {
+   			Element eImage64 = new Element("image64");
+   			eImage64.appendChild(image64);
+   			eQuestion.appendChild(eImage64);
+   		}
+           if (this.correctFeedBack!="") {
+   			Element eCorrectFeedBack;
+   		}
+	}
+
+	public void importXML(String _xml) {
 		// TODO Auto-generated method stub
 		
 	}
