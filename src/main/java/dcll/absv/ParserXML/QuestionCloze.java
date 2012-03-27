@@ -1,4 +1,5 @@
 /*
+
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -25,8 +26,48 @@ public class QuestionCloze implements IQuestion{
     }
     
     public Element toXML() {
-        throw new UnsupportedOperationException("Not supported yet.");
+       Element eQuestion = new Element("question");
+       
+       Element eName = new Element("name");
+	   eName.appendChild(QuestionCloze.getElementText(this.name));
+	   eQuestion.appendChild(eName);
+	   
+	   Element eQuestionText = new Element("questiontext");
+	   if (this.questionText[0]!="") {
+		Attribute aFormatQuestionText = new Attribute("format",this.questionText[0]);
+		eQuestionText.addAttribute(aFormatQuestionText);
+	   }
+	   eQuestionText.appendChild(QuestionCloze.getElementText(this.questionText[1]));
+	   eQuestion.appendChild(eQuestionText);
+       
+       
+       Element eGeneralFeedback;
+       if (this.generalFeedBack!="") {
+		eGeneralFeedback = new Element("generalfeedback");
+		eGeneralFeedback.appendChild(QuestionCloze
+				.getElementText(this.generalFeedBack));
+		eQuestion.appendChild(eGeneralFeedback);
+       }
+       
+       if (this.shuffleAnswer!="") {
+		Element eShuffleAnswer = new Element("shuffleanswer");
+		eShuffleAnswer.appendChild(this.shuffleAnswer);
+		eQuestion.appendChild(eShuffleAnswer);
+	}
+       
+       
+       this.addSpecificTags(eQuestion);
+       
+       return eQuestion;
     }
+
+	protected void addSpecificTags(Element eQuestion) {
+		//Ajout d'élément spécifiques à la question
+		 Attribute aTypeQuestion = new Attribute("type","cloze");
+	     eQuestion.addAttribute(aTypeQuestion);
+		
+	}
+
     
     public void importXML(String _xml) {
 		// TODO Auto-generated method stub
@@ -71,5 +112,11 @@ public class QuestionCloze implements IQuestion{
     
     public void setShuffleAnswer(String _shuffleAnswer){
         shuffleAnswer=_shuffleAnswer;
+    }
+    
+    public static Element getElementText(String label){
+    	Element text = new Element("text");
+    	text.appendChild(label);
+    	return text;
     }
 }

@@ -52,10 +52,35 @@ public class QuestionNumerical extends QuestionClasseIntermediaire{
 	   answer[3]=_feedBack;
    }
    
-    @Override
-    public Element toXML() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+   @Override
+protected void addSpecificTags(Element eQuestion) {
+	// TODO Auto-generated method stub
+	super.addSpecificTags(eQuestion);
+	Attribute aTypeQuestion = eQuestion.getAttribute("type");
+	if (aTypeQuestion!=null) {
+		eQuestion.removeAttribute(aTypeQuestion);
+	}
+	//ajoute de son type
+	aTypeQuestion = new Attribute("type", "numerical");
+	eQuestion.addAttribute(aTypeQuestion);
+	
+	Attribute eFraction = new Attribute("fraction",this.answer[0]);
+	
+	Element eText = new Element("text");
+	eText.appendChild(this.answer[1]);
+	
+	Element eTolerance = new Element("tolerance");
+	eTolerance.appendChild(this.answer[2]);
+	
+	Element eFeedbak = new Element("feedback");
+	eFeedbak.appendChild(QuestionCloze.getElementText(this.answer[3]));
+	
+	Element eAnswer = new Element("answer");
+	eAnswer.addAttribute(eFraction);
+	eAnswer.appendChild(eText);
+	eAnswer.appendChild(eFeedbak);
+	eQuestion.appendChild(eAnswer);
+}
     
     public void importXML(String _xml) {
 		// TODO Auto-generated method stub

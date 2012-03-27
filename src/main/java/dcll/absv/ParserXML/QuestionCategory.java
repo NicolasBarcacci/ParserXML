@@ -4,7 +4,8 @@
  */
 package dcll.absv.ParserXML;
 
-import nu.xom.Element;
+
+import nu.xom.*;
 
 /**
  *
@@ -30,7 +31,15 @@ public class QuestionCategory implements IQuestion{
     }
 
     public Element toXML() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    	Element eQuestion = new Element("question");
+    	eQuestion.addAttribute(new Attribute("type","category"));
+    	
+    	Element eCategory = new Element("category");
+    	eCategory.appendChild("$course$/"+QuestionCloze.getElementText(this.category));
+    	
+    	eQuestion.appendChild(eCategory);
+    	
+    	return eQuestion;
     }
 
 	public void importXML(String _xml) {

@@ -16,8 +16,9 @@ public class QuestionCalculated extends QuestionClasseIntermediaire{
     }
     
     @Override
-    public Element toXML() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    protected void addSpecificTags(Element eQuestion) {
+    	// TODO Auto-generated method stub
+    	super.addSpecificTags(eQuestion);
     }
     
     public void importXML(String _xml) {
