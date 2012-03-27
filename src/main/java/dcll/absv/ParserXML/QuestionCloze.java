@@ -31,6 +31,7 @@ public class QuestionCloze implements IQuestion{
        Element eName = new Element("name");
 	   eName.appendChild(QuestionCloze.getElementText(this.name));
 	   eQuestion.appendChild(eName);
+	   
 	   Element eQuestionText = new Element("questiontext");
 	   if (this.questionText[0]!="") {
 		Attribute aFormatQuestionText = new Attribute("format",this.questionText[0]);

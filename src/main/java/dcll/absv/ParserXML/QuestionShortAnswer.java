@@ -75,7 +75,18 @@ protected void addSpecificTags(Element eQuestion) {
 	aTypeQuestion = new Attribute("type", "shortanswer");
 	eQuestion.addAttribute(aTypeQuestion);
 	
-	// TODO Ajout des réponses
+	for (int i = 0; i < this.answer.length; i++) {
+		Attribute eFraction = new Attribute("fraction",this.answer[i][0]);
+		
+		Element eFeedbak = new Element("feedback");
+		eFeedbak.appendChild(QuestionCloze.getElementText(this.answer[i][2]));
+		
+		Element eAnswer = new Element("answer");
+		eAnswer.addAttribute(eFraction);
+		eAnswer.appendChild(QuestionCloze.getElementText(this.answer[i][1]));
+		eAnswer.appendChild(eFeedbak);
+		eQuestion.appendChild(eAnswer);
+	}
 }
 
 	public void importXML(String _xml) {

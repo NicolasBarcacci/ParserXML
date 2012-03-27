@@ -51,6 +51,24 @@ public class QuestionMatching extends QuestionClasseIntermediaire{
 protected void addSpecificTags(Element eQuestion) {
 	// TODO Auto-generated method stub
 	super.addSpecificTags(eQuestion);
+	//Suppression du type de la classe mère
+		Attribute aTypeQuestion = eQuestion.getAttribute("type");
+		if (aTypeQuestion!=null) {
+			eQuestion.removeAttribute(aTypeQuestion);
+		}
+		//ajoute de son type
+		aTypeQuestion = new Attribute("type", "matching");
+		eQuestion.addAttribute(aTypeQuestion);
+		
+		for (int i = 0; i < this.subquestion.length; i++) {
+			Element eAnswer = new Element("answer");
+			eAnswer.appendChild(QuestionCloze.getElementText(this.subquestion[i][1]));
+			
+			Element eSubquestion = new Element("answer");
+			eSubquestion.appendChild(QuestionCloze.getElementText(this.subquestion[i][0]));
+			eSubquestion.appendChild(eAnswer);
+			eQuestion.appendChild(eSubquestion);
+		}
 }
     
     public void importXML(String _xml) {

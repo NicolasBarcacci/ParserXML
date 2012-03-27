@@ -142,7 +142,20 @@ public class QuestionMultiChoice extends QuestionClasseIntermediaire{
 		eQuestion.appendChild(eAnswernumbering);
 	}
        
-       // TODO Ajout des réponses
+
+   	for (int i = 0; i < this.answer.length; i++) {
+   		Attribute eFraction = new Attribute("fraction",this.answer[i][0]);
+   		Element eText = new Element("text");
+   		eText.appendChild(this.answer[i][1]);
+   		Element eFeedbak = new Element("feedback");
+   		eFeedbak.appendChild(this.answer[i][2]);
+   		
+   		Element eAnswer = new Element("answer");
+   		eAnswer.addAttribute(eFraction);
+   		eAnswer.appendChild(eText);
+   		eAnswer.appendChild(eFeedbak);
+   		eQuestion.appendChild(eAnswer);
+   	}
 	}
 
 	public void importXML(String _xml) {
