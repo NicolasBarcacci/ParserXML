@@ -38,14 +38,56 @@ public class Quiz {
 		
 	}
 	
+	
 	public void openFile(String _file){
-		
-//		Element parent = new Element("parent", 1);
-//		   Element child = new Element("child", 0);
-//		   parent.appendChild(child);
-//		   Nodes results = child.query("/*");
-//		   Node result = result.get(0);
+
+		try {
+
+			Builder parser = new Builder();
+			//   Document doc = parser.build(args[0]);
+			Document doc = parser.build(_file);
+			showElement(doc.getRootElement(), 0);
+		}
+		catch (ValidityException ex) {
+			System.err.println(_file+" : Pas valide.");
+		}
+		catch (java.io.IOException ex) {
+			System.err.println(_file+" : Ne peux pas lire le fichier.");
+		} 
+		catch (ParsingException e) {
+			e.printStackTrace();
+		}
 	}
+	
+	private static void showElement(Element element, int level) {
+		// preciser la balise et les attributs
+		indent(level, "<"+element.getLocalName());
+		for (int i=0; i < element.getAttributeCount(); i++) {
+			Attribute attr = element.getAttribute(i);
+			System.out.print(" "+attr.getLocalName()+"='"+attr.getValue()+"'");
+		}
+		System.out.println(">");
+
+		// boucle pour les noeuds fils
+		for (int i=0; i < element.getChildCount(); i++) {
+			Node node = element.getChild(i);
+			if (node instanceof Text) {
+				String text = node.getValue();
+				if (text.length() > 30) {
+					indent(level+1, "|"+text.substring(0,30)+"...\n");
+				}
+			} else if (node instanceof Element) {
+				showElement((Element)node, level+1);
+			}
+		}
+	}
+
+	private static void indent(int level, String string) {
+		for (int i=0; i < level; i++) { System.out.print("  "); }
+		System.out.print(string);
+	}
+	          
+
 	
 	public IQuestion getQuestion(int _n){
 		if(_n<questions.size()){
