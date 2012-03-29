@@ -108,6 +108,10 @@ public class Quiz {
 		questions.remove(_question);
 	}
 	
+	public void deleteAllQuestion(){
+		questions.clear();
+	}
+	
 	public void addQuestionCategory(){
 		questions.add(new QuestionCategory());		
 	}
