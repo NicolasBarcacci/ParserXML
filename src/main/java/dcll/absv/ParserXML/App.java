@@ -21,8 +21,10 @@ public class App
     	
         System.out.println( doc.toXML() ); */
     	
-//    	Quiz q = new Quiz();
-//    	q.openFile("demo.xml");
+    	Quiz q = new Quiz();
+    	q.openFile("/User/Harkebi/quiz.xml");
+    	
+//    	q.toXML("test.xml");
 
     }
 }

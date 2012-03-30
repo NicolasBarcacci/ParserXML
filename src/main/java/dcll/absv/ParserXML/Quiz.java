@@ -2,7 +2,9 @@ package dcll.absv.ParserXML;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import nu.xom.*;
@@ -14,9 +16,10 @@ public class Quiz {
 	ArrayList<IQuestion> questions;
 	
 	public Quiz() {
+		this.questions = new ArrayList<IQuestion>();
 	}
 	
-	public Document toXML(){
+	public Document toXML(String _filename){
 		
 		Element quiz = new Element("quiz");
 		for (Iterator<IQuestion> iterator = questions.iterator(); iterator.hasNext();) {
@@ -29,7 +32,10 @@ public class Quiz {
 	      Serializer serializer = new Serializer(System.out, "ISO-8859-1");
 	      serializer.setIndent(4);
 	      serializer.setMaxLength(64);
-	      serializer.write(doc);  
+	      serializer.write(doc); 
+	      FileWriter fstream = new FileWriter(_filename);
+	      BufferedWriter out = new BufferedWriter(fstream);
+	      out.write(doc.toString());
 	      return doc;
 	    }
 	    catch (IOException ex) {
@@ -48,6 +54,10 @@ public class Quiz {
 			//   Document doc = parser.build(args[0]);
 			Document doc = parser.build(_file);
 			showElement(doc.getRootElement(), 0);
+			for (int i = 0; i < doc.getRootElement().getChildElements("question").size(); i++) {
+				IQuestion question = creerQuestion(doc.getRootElement().getChildElements("question").get(i).getAttributeValue("type"),doc.getRootElement().getChildElements("question").get(i));
+				this.questions.add(question);
+			}
 		}
 		catch (ValidityException ex) {
 			System.err.println(_file+" : Pas valide.");
@@ -58,6 +68,41 @@ public class Quiz {
 		catch (ParsingException e) {
 			e.printStackTrace();
 		}
+
+	}
+	
+	
+//	private Class getClassQuestion(String attributeValue) {
+		
+//		return null;
+//	}
+
+	private IQuestion creerQuestion(String typeQuestion, Element questionXML) {
+		IQuestion question = null;
+		
+		if (typeQuestion=="cloze") {
+			
+		} else if (typeQuestion=="truefalse") {
+			question = new QuestionTrueFalse();
+		} else if (typeQuestion=="calculated") {
+			question = new QuestionCalculated();
+		} else if (typeQuestion=="description") {
+			question = new QuestionDescription();
+		} else if (typeQuestion=="essay") {
+			question = new QuestionEssay();
+		} else  if (typeQuestion=="matching") {
+			question = new QuestionMatching() ;
+		} else  if (typeQuestion=="multichoice") {
+			question = new QuestionMultiChoice();
+		} else  if (typeQuestion=="numerical") {
+			question = new QuestionNumerical();
+		} else  if (typeQuestion=="shortanswer") {
+			question = new QuestionShortAnswer();
+		} else  if (typeQuestion=="category") {
+			question = new QuestionCategory();
+		}
+		question.importXML(questionXML);
+		return question;
 	}
 	
 	private static void showElement(Element element, int level) {
