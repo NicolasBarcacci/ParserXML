@@ -19,7 +19,7 @@ public class QuestionCategory implements IQuestion{
     }
     
     public QuestionCategory(String xml){
-        
+        //TODO
     }
     
     public String getCategory(){
