@@ -2,9 +2,8 @@ package dcll.absv.ParserXML;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import nu.xom.*;
@@ -33,9 +32,12 @@ public class Quiz {
 	      serializer.setIndent(4);
 	      serializer.setMaxLength(64);
 	      serializer.write(doc); 
-	      FileWriter fstream = new FileWriter(_filename);
-	      BufferedWriter out = new BufferedWriter(fstream);
-	      out.write(doc.toString());
+	     String resultat = doc.toXML();
+	     File fichier = new File(_filename); 
+	     // On aplati l'objet 
+	     FileOutputStream fos; 
+	     fos = new FileOutputStream(fichier);  
+	     fos.write(resultat.getBytes()); 
 	      return doc;
 	    }
 	    catch (IOException ex) {
@@ -73,11 +75,6 @@ public class Quiz {
 
 	}
 	
-	
-//	private Class getClassQuestion(String attributeValue) {
-		
-//		return null;
-//	}
 
 	private IQuestion creerQuestion(String typeQuestion, Element questionXML) {
 		IQuestion question = null;
