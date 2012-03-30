@@ -95,7 +95,7 @@ protected void addSpecificTags(Element eQuestion) {
 			for (int i = 0; i < _xml.getChildElements("answer").size(); i++) {
 				this.setAnswerXFraction(i, _xml.getChildElements("answer").get(i).getAttributeValue("fraction"));
 				this.setAnswerXText(i, _xml.getChildElements("answer").get(i).getFirstChildElement("text").getValue());
-				this.setAnswerXFeedback(i, _xml.getChildElements("answer").get(i).getFirstChildElement("fraction").getFirstChildElement("text").getValue());
+				this.setAnswerXFeedback(i, _xml.getChildElements("answer").get(i).getFirstChildElement("feedback").getFirstChildElement("text").getValue());
 			}
 			
 		}

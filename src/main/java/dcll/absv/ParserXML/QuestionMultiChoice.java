@@ -213,7 +213,7 @@ public String getImage64(){
 		if (_xml.getFirstChildElement("answernumbering")!=null) {
 			this.setAnswernumbering(_xml.getFirstChildElement("answernumbering").getValue());
 		}
-		
+		this.answer = new String[_xml.getChildElements("answer").size()][3];
 		for (int i = 0; i < _xml.getChildElements("answer").size(); i++) {
 			this.setAnswerXFraction(i, _xml.getChildElements("answer").get(i).getAttributeValue("fraction"));
 			this.setAnswerXText(i, _xml.getChildElements("answer").get(i).getFirstChildElement("text").getValue());

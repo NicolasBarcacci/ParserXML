@@ -73,11 +73,10 @@ protected void addSpecificTags(Element eQuestion) {
     
     public void importXML(Element _xml) {
 		super.importXML(_xml);
-		//TODO subquestion
-		if (_xml.getChildElements("subquestion")!=null){
-			for (int i = 0; i < _xml.getChildElements().size(); i++) {
-				this.setSubquestionXText(i, _xml.getChildElements().get(i).getFirstChildElement("text").getValue());
-				this.setSubquestionXAnswer(i, _xml.getChildElements().get(i).getFirstChildElement("answer").getFirstChildElement("text").getValue());
+		if (_xml.getChildElements("subquestion")!=null ){
+			for (int i = 0; i < _xml.getChildElements("subquestion").size(); i++) {
+				this.setSubquestionXText(i, _xml.getChildElements("subquestion").get(i).getFirstChildElement("text").getValue());
+				this.setSubquestionXAnswer(i, _xml.getChildElements("subquestion").get(i).getFirstChildElement("answer").getFirstChildElement("text").getValue());
 			}
 		}
 	}

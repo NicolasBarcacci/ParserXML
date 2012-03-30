@@ -22,9 +22,9 @@ public class App
         System.out.println( doc.toXML() ); */
     	
     	Quiz q = new Quiz();
-    	q.openFile("/User/Harkebi/quiz.xml");
+    	q.openFile("quiz.xml");
     	
-//    	q.toXML("test.xml");
+    	q.toXML("test.xml");
 
     }
 }

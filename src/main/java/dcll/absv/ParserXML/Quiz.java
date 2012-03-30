@@ -56,7 +56,9 @@ public class Quiz {
 			showElement(doc.getRootElement(), 0);
 			for (int i = 0; i < doc.getRootElement().getChildElements("question").size(); i++) {
 				IQuestion question = creerQuestion(doc.getRootElement().getChildElements("question").get(i).getAttributeValue("type"),doc.getRootElement().getChildElements("question").get(i));
-				this.questions.add(question);
+				if (question!=null) {
+					this.questions.add(question);
+				}
 			}
 		}
 		catch (ValidityException ex) {
@@ -80,27 +82,30 @@ public class Quiz {
 	private IQuestion creerQuestion(String typeQuestion, Element questionXML) {
 		IQuestion question = null;
 		
-		if (typeQuestion=="cloze") {
-			
-		} else if (typeQuestion=="truefalse") {
+		if (typeQuestion.equals("cloze")) {
+			question = new QuestionCloze();
+		} else if (typeQuestion.equals("truefalse")) {
 			question = new QuestionTrueFalse();
-		} else if (typeQuestion=="calculated") {
+		} else if (typeQuestion.equals("calculated")) {
 			question = new QuestionCalculated();
-		} else if (typeQuestion=="description") {
+		} else if (typeQuestion.equals("description")) {
 			question = new QuestionDescription();
-		} else if (typeQuestion=="essay") {
+		} else if (typeQuestion.equals("essay")) {
 			question = new QuestionEssay();
-		} else  if (typeQuestion=="matching") {
+		} else  if (typeQuestion.equals("matching")) {
 			question = new QuestionMatching() ;
-		} else  if (typeQuestion=="multichoice") {
+		} else  if (typeQuestion.equals("multichoice")) {
 			question = new QuestionMultiChoice();
-		} else  if (typeQuestion=="numerical") {
+		} else  if (typeQuestion.equals("numerical")) {
 			question = new QuestionNumerical();
-		} else  if (typeQuestion=="shortanswer") {
+		} else  if (typeQuestion.equals("shortanswer")) {
 			question = new QuestionShortAnswer();
-		} else  if (typeQuestion=="category") {
+		} else  if (typeQuestion.equals("category")) {
 			question = new QuestionCategory();
+		} else { 
+			return null;
 		}
+		
 		question.importXML(questionXML);
 		return question;
 	}

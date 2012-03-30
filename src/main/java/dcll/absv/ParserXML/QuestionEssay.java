@@ -12,7 +12,7 @@ import nu.xom.*;
  */
 public class QuestionEssay extends QuestionClasseIntermediaire{
     
-	private String[] answer; //[fraction,text,feedback]
+	private String[] answer; //[fraction,feedback]
 	
 	public QuestionEssay(){
         super();
@@ -49,22 +49,23 @@ public class QuestionEssay extends QuestionClasseIntermediaire{
     	eQuestion.addAttribute(aTypeQuestion);
     	
     	Attribute eFraction = new Attribute("fraction",this.answer[0]);
-    	
-    	Element eText = new Element("text");
-    	eText.appendChild(this.answer[1]);
+
     	
     	Element eFeedbak = new Element("feedback");
-    	eFeedbak.appendChild(Quiz.getElementText(this.answer[2]));
+    	eFeedbak.appendChild(Quiz.getElementText(this.answer[1]));
     	
     	Element eAnswer = new Element("answer");
     	eAnswer.addAttribute(eFraction);
-    	eAnswer.appendChild(eText);
     	eAnswer.appendChild(eFeedbak);
     	eQuestion.appendChild(eAnswer);
     }
     
     public void importXML(Element _xml) {
 		// TODO Auto-generated method stub
-		
+		super.importXML(_xml);
+		if (_xml.getFirstChildElement("answer")!=null ){
+				this.setAnswerFraction(_xml.getFirstChildElement("answer").getAttributeValue("fraction"));
+				this.setAnswerFeedBack(_xml.getFirstChildElement("answer").getFirstChildElement("feedback").getFirstChildElement("text").getValue());
+		}
 	}
 }
