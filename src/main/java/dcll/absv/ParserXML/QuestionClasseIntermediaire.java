@@ -44,4 +44,15 @@ public abstract class QuestionClasseIntermediaire extends QuestionDescription{
 			eQuestion.appendChild(eImage);
 		}
     }
+    
+
+    @Override
+    public void importXML(Element _xml) {
+    	super.importXML(_xml);
+    	
+    	if(_xml.getFirstChildElement("image")!=null){
+    		this.setImage(_xml.getFirstChildElement("image").getValue());
+    	}
+    	
+    }
 }

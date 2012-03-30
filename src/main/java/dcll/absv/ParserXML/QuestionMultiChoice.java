@@ -14,7 +14,6 @@ public class QuestionMultiChoice extends QuestionClasseIntermediaire{
     
     private String image64;
     private String single;
-    private String shuffleAnswer2;
     private String correctFeedBack;
     private String partiallyCorrectFeedBack;
     private String incorrectFeedBack;
@@ -28,16 +27,49 @@ public class QuestionMultiChoice extends QuestionClasseIntermediaire{
         answer = new String[4][3];
     }
 
-   public String getImage64(){
+    
+    
+   public void setImage64(String image64) {
+		this.image64 = image64;
+	}
+
+
+
+	public void setSingle(String single) {
+		this.single = single;
+	}
+
+
+	public void setCorrectFeedBack(String correctFeedBack) {
+		this.correctFeedBack = correctFeedBack;
+	}
+
+
+
+	public void setPartiallyCorrectFeedBack(String partiallyCorrectFeedBack) {
+		this.partiallyCorrectFeedBack = partiallyCorrectFeedBack;
+	}
+
+
+
+	public void setIncorrectFeedBack(String incorrectFeedBack) {
+		this.incorrectFeedBack = incorrectFeedBack;
+	}
+
+
+
+	public void setAnswernumbering(String answernumbering) {
+		this.answernumbering = answernumbering;
+	}
+
+
+
+public String getImage64(){
 	   return image64;
    }
    
    public String getSingle(){
 	   return single;
-   }
-   
-   public String getShuffleAnswer2(){
-	   return shuffleAnswer2;
    }
    
    public String getCorrectFeedBack(){
@@ -142,6 +174,7 @@ public class QuestionMultiChoice extends QuestionClasseIntermediaire{
 		eQuestion.appendChild(eAnswernumbering);
 	}
        
+       
 
    	for (int i = 0; i < this.answer.length; i++) {
    		Attribute eFraction = new Attribute("fraction",this.answer[i][0]);
@@ -158,8 +191,33 @@ public class QuestionMultiChoice extends QuestionClasseIntermediaire{
    	}
 	}
 
-	public void importXML(String _xml) {
+    @Override
+	public void importXML(Element _xml) {
 		// TODO Auto-generated method stub
+		super.importXML(_xml);
+		if (_xml.getFirstChildElement("image64")!=null) {
+			this.setImage64(_xml.getFirstChildElement("image64").getValue());
+		}
+		if (_xml.getFirstChildElement("single")!=null) {
+			this.setSingle(_xml.getFirstChildElement("single").getValue());
+		}
+		if (_xml.getFirstChildElement("correctfeedback")!=null) {
+			this.setCorrectFeedBack(_xml.getFirstChildElement("correctfeedback").getValue());
+		}
+		if (_xml.getFirstChildElement("incorrectfeedback")!=null) {
+			this.setIncorrectFeedBack(_xml.getFirstChildElement("incorrectfeedback").getValue());
+		}
+		if (_xml.getFirstChildElement("partiallycorrectfeedback")!=null) {
+			this.setPartiallyCorrectFeedBack(_xml.getFirstChildElement("partiallycorrectfeedback").getValue());
+		}
+		if (_xml.getFirstChildElement("answernumbering")!=null) {
+			this.setAnswernumbering(_xml.getFirstChildElement("answernumbering").getValue());
+		}
 		
+		for (int i = 0; i < _xml.getChildElements("answer").size(); i++) {
+			this.setAnswerXFraction(i, _xml.getChildElements("answer").get(i).getAttributeValue("fraction"));
+			this.setAnswerXText(i, _xml.getChildElements("answer").get(i).getFirstChildElement("text").getValue());
+			this.setAnswerXFeedBack(i, _xml.getChildElements("answer").get(i).getFirstChildElement("feedback").getFirstChildElement("text").getValue());
+		}
 	}
 }

@@ -35,16 +35,18 @@ public class QuestionCategory implements IQuestion{
     	eQuestion.addAttribute(new Attribute("type","category"));
     	
     	Element eCategory = new Element("category");
-    	eCategory.appendChild("$course$/"+QuestionCloze.getElementText(this.category));
+    	eCategory.appendChild(Quiz.getElementText(this.category));
     	
     	eQuestion.appendChild(eCategory);
     	
     	return eQuestion;
     }
 
-	public void importXML(String _xml) {
+	public void importXML(Element _xml) {
 		// TODO Auto-generated method stub
-		
+		if (_xml.getFirstChildElement("category")!=null) {
+			this.setCategory(_xml.getFirstChildElement("category").getFirstChildElement("text").getValue());
+		}
 	}
     
 }

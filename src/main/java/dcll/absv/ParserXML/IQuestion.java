@@ -12,5 +12,5 @@ import nu.xom.*;
  */
 public interface IQuestion {
     public Element toXML();
-    public void importXML(String _xml);
+    public void importXML(Element _xml);
 }

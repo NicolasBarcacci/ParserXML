@@ -27,16 +27,16 @@ public class QuestionTrueFalse extends QuestionClasseIntermediaire{
          eQuestion.addAttribute(aTypeQuestion);
          
          Element eFeedbackCorrect = new Element("feedback");
-         eFeedbackCorrect.appendChild(QuestionCloze.getElementText("Correct !"));
+         eFeedbackCorrect.appendChild(Quiz.getElementText("Correct !"));
          
          Element eFeedbackWrong = new Element("feedback");
-         eFeedbackWrong.appendChild(QuestionCloze.getElementText("Oops !"));
+         eFeedbackWrong.appendChild(Quiz.getElementText("Oops !"));
          
          Element eTrue = new Element("true");
-         eTrue.appendChild(QuestionCloze.getElementText("true"));
+         eTrue.appendChild(Quiz.getElementText("true"));
         
          Element eFalse = new Element("false");
-         eFalse.appendChild(QuestionCloze.getElementText("false"));
+         eFalse.appendChild(Quiz.getElementText("false"));
 
          
          if (this.answerTrue=="100") {
@@ -59,24 +59,34 @@ public class QuestionTrueFalse extends QuestionClasseIntermediaire{
  		eQuestion.appendChild(eTrue);
 	}
 
-	public void importXML(String _xml) {
+	public void importXML(Element _xml) {
 		// TODO Auto-generated method stub
-		
+		super.importXML(_xml);
+		if (_xml.getChildElements("answer").size()==2 ) {
+			if (_xml.getChildElements("answer").get(0).getFirstChildElement("text").getValue()=="true") {
+			this.setAnswerTrue(_xml.getChildElements("answer").get(0).getAttributeValue("fraction"));
+			this.setAnswerFalse(_xml.getChildElements("answer").get(1).getAttributeValue("fraction"));
+			} else {
+
+				this.setAnswerTrue(_xml.getChildElements("answer").get(1).getAttributeValue("fraction"));
+				this.setAnswerFalse(_xml.getChildElements("answer").get(0).getAttributeValue("fraction"));
+			}
+		}
 	}
     
-    public String getAnswerTrueFeedBack(){
+    public String getAnswerTrue(){
         return answerTrue;
     }
     
-    public String getAnswerFalseFeedBack(){
+    public String getAnswerFalse(){
     	return answerFalse;
     }
     
-    public void setAnswerTrueFeedBack(String _answer){
+    public void setAnswerTrue(String _answer){
         answerTrue =_answer;
     }
     
-    public void setAnswerFalseFeedBack(String _answer){
+    public void setAnswerFalse(String _answer){
         answerTrue =_answer;
     }
 }

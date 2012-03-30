@@ -79,18 +79,26 @@ protected void addSpecificTags(Element eQuestion) {
 		Attribute eFraction = new Attribute("fraction",this.answer[i][0]);
 		
 		Element eFeedbak = new Element("feedback");
-		eFeedbak.appendChild(QuestionCloze.getElementText(this.answer[i][2]));
+		eFeedbak.appendChild(Quiz.getElementText(this.answer[i][2]));
 		
 		Element eAnswer = new Element("answer");
 		eAnswer.addAttribute(eFraction);
-		eAnswer.appendChild(QuestionCloze.getElementText(this.answer[i][1]));
+		eAnswer.appendChild(Quiz.getElementText(this.answer[i][1]));
 		eAnswer.appendChild(eFeedbak);
 		eQuestion.appendChild(eAnswer);
 	}
 }
 
-	public void importXML(String _xml) {
-		// TODO Auto-generated method stub
+	public void importXML(Element _xml) {
+		super.importXML(_xml);
+		if (_xml.getFirstChildElement("answer")!=null) {
+			for (int i = 0; i < _xml.getChildElements("answer").size(); i++) {
+				this.setAnswerXFraction(i, _xml.getChildElements("answer").get(i).getAttributeValue("fraction"));
+				this.setAnswerXText(i, _xml.getChildElements("answer").get(i).getFirstChildElement("text").getValue());
+				this.setAnswerXFeedback(i, _xml.getChildElements("answer").get(i).getFirstChildElement("fraction").getFirstChildElement("text").getValue());
+			}
+			
+		}
 		
 	}
 }

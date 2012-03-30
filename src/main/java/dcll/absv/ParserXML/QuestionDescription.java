@@ -61,9 +61,18 @@ public class QuestionDescription extends QuestionCloze{
 
 
 
-
-	public void importXML(String _xml) {
-		// TODO Auto-generated method stub
+    @Override
+	public void importXML(Element _xml) {
+		super.importXML(_xml);
+		if (_xml.getFirstChildElement("defaultgrade")!=null) {
+			this.setDefaultGrade(_xml.getFirstChildElement("defaultgrade").getValue());
+		}
+		if (_xml.getFirstChildElement("penalty")!=null) {
+			this.setPenalty(_xml.getFirstChildElement("penalty").getValue());
+		}
+		if (_xml.getFirstChildElement("hidden")!=null) {
+			this.setHidden(_xml.getFirstChildElement("hidden").getValue());
+		}
 		
 	}
     

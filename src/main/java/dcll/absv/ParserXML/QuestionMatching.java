@@ -62,17 +62,23 @@ protected void addSpecificTags(Element eQuestion) {
 		
 		for (int i = 0; i < this.subquestion.length; i++) {
 			Element eAnswer = new Element("answer");
-			eAnswer.appendChild(QuestionCloze.getElementText(this.subquestion[i][1]));
+			eAnswer.appendChild(Quiz.getElementText(this.subquestion[i][1]));
 			
 			Element eSubquestion = new Element("answer");
-			eSubquestion.appendChild(QuestionCloze.getElementText(this.subquestion[i][0]));
+			eSubquestion.appendChild(Quiz.getElementText(this.subquestion[i][0]));
 			eSubquestion.appendChild(eAnswer);
 			eQuestion.appendChild(eSubquestion);
 		}
 }
     
-    public void importXML(String _xml) {
-		// TODO Auto-generated method stub
-		
+    public void importXML(Element _xml) {
+		super.importXML(_xml);
+		//TODO subquestion
+		if (_xml.getChildElements("subquestion")!=null){
+			for (int i = 0; i < _xml.getChildElements().size(); i++) {
+				this.setSubquestionXText(i, _xml.getChildElements().get(i).getFirstChildElement("text").getValue());
+				this.setSubquestionXAnswer(i, _xml.getChildElements().get(i).getFirstChildElement("answer").getFirstChildElement("text").getValue());
+			}
+		}
 	}
 }

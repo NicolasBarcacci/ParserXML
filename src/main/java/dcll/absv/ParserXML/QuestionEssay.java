@@ -54,7 +54,7 @@ public class QuestionEssay extends QuestionClasseIntermediaire{
     	eText.appendChild(this.answer[1]);
     	
     	Element eFeedbak = new Element("feedback");
-    	eFeedbak.appendChild(QuestionCloze.getElementText(this.answer[2]));
+    	eFeedbak.appendChild(Quiz.getElementText(this.answer[2]));
     	
     	Element eAnswer = new Element("answer");
     	eAnswer.addAttribute(eFraction);
@@ -63,7 +63,7 @@ public class QuestionEssay extends QuestionClasseIntermediaire{
     	eQuestion.appendChild(eAnswer);
     }
     
-    public void importXML(String _xml) {
+    public void importXML(Element _xml) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -21,8 +21,9 @@ public class QuestionCalculated extends QuestionClasseIntermediaire{
     	super.addSpecificTags(eQuestion);
     }
     
-    public void importXML(String _xml) {
+    public void importXML(Element _xml) {
 		// TODO Auto-generated method stub
+    	super.importXML(_xml);
 		
 	}
 }

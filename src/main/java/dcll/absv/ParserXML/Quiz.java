@@ -16,7 +16,7 @@ public class Quiz {
 	public Quiz() {
 	}
 	
-	public void toXML(){
+	public Document toXML(){
 		
 		Element quiz = new Element("quiz");
 		for (Iterator<IQuestion> iterator = questions.iterator(); iterator.hasNext();) {
@@ -30,11 +30,12 @@ public class Quiz {
 	      serializer.setIndent(4);
 	      serializer.setMaxLength(64);
 	      serializer.write(doc);  
+	      return doc;
 	    }
 	    catch (IOException ex) {
 	       System.err.println(ex); 
 	    }  
-		
+		return null;
 		
 	}
 	
@@ -172,5 +173,11 @@ public class Quiz {
 			questions.set(_n + 1, questions.get(_n));
 			questions.set(_n, q);
 		}
+	}
+
+	public static Element getElementText(String label){
+		Element text = new Element("text");
+		text.appendChild(label);
+		return text;
 	}
 }

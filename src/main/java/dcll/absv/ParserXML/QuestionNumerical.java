@@ -73,7 +73,7 @@ protected void addSpecificTags(Element eQuestion) {
 	eTolerance.appendChild(this.answer[2]);
 	
 	Element eFeedbak = new Element("feedback");
-	eFeedbak.appendChild(QuestionCloze.getElementText(this.answer[3]));
+	eFeedbak.appendChild(Quiz.getElementText(this.answer[3]));
 	
 	Element eAnswer = new Element("answer");
 	eAnswer.addAttribute(eFraction);
@@ -82,8 +82,14 @@ protected void addSpecificTags(Element eQuestion) {
 	eQuestion.appendChild(eAnswer);
 }
     
-    public void importXML(String _xml) {
+    public void importXML(Element _xml) {
 		// TODO Auto-generated method stub
-		
+		super.importXML(_xml);
+		if (_xml.getFirstChildElement("answer")!=null) {
+			this.setAnswerFraction(_xml.getFirstChildElement("answer").getAttributeValue("fraction"));
+			this.setAnswerText(_xml.getFirstChildElement("answer").getFirstChildElement("text").getValue());
+			this.setAnswerTolerance(_xml.getFirstChildElement("answer").getFirstChildElement("tolerance").getValue());
+			this.setAnswerfeedBack(_xml.getFirstChildElement("answer").getFirstChildElement("feedback").getFirstChildElement("text").getValue());
+		}
 	}
 }

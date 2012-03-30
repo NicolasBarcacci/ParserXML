@@ -5,6 +5,8 @@
  */
 package dcll.absv.ParserXML;
 
+import java.util.Iterator;
+
 import nu.xom.*;
 
 /**
@@ -29,7 +31,7 @@ public class QuestionCloze implements IQuestion{
        Element eQuestion = new Element("question");
        
        Element eName = new Element("name");
-	   eName.appendChild(QuestionCloze.getElementText(this.name));
+	   eName.appendChild(Quiz.getElementText(this.name));
 	   eQuestion.appendChild(eName);
 	   
 	   Element eQuestionText = new Element("questiontext");
@@ -37,14 +39,14 @@ public class QuestionCloze implements IQuestion{
 		Attribute aFormatQuestionText = new Attribute("format",this.questionText[0]);
 		eQuestionText.addAttribute(aFormatQuestionText);
 	   }
-	   eQuestionText.appendChild(QuestionCloze.getElementText(this.questionText[1]));
+	   eQuestionText.appendChild(Quiz.getElementText(this.questionText[1]));
 	   eQuestion.appendChild(eQuestionText);
        
        
        Element eGeneralFeedback;
        if (this.generalFeedBack!="") {
 		eGeneralFeedback = new Element("generalfeedback");
-		eGeneralFeedback.appendChild(QuestionCloze
+		eGeneralFeedback.appendChild(Quiz
 				.getElementText(this.generalFeedBack));
 		eQuestion.appendChild(eGeneralFeedback);
        }
@@ -69,9 +71,25 @@ public class QuestionCloze implements IQuestion{
 	}
 
     
-    public void importXML(String _xml) {
-		// TODO Auto-generated method stub
-		
+    public void importXML(Element _xml) {
+    	if (_xml.getFirstChildElement("name")!=null) {
+			this.setName(_xml.getFirstChildElement("name").getValue());
+		}
+    	if (_xml.getFirstChildElement("generalfeedback")!=null) {
+			this.setGeneralFeedBack(_xml.getFirstChildElement("generalfeedback").getFirstChildElement("text").getValue());
+		}
+    	if (_xml.getFirstChildElement("shuffleanswer")!=null) {
+    		this.setShuffleAnswer(_xml.getFirstChildElement("shuffleanswer").getValue());
+    	}
+    	if (_xml.getFirstChildElement("questiontext")!=null) {
+    		if (_xml.getFirstChildElement("questiontext")
+						.getAttributeValue("format")!=null) {
+				this.setQuestionText(_xml.getFirstChildElement("questiontext")
+						.getAttributeValue("format"));
+			}
+    		this.setQuestionTextText(_xml.getFirstChildElement("questiontext").getFirstChildElement("text").getValue());
+    	}
+    	
 	}
     
     public String getName(){
@@ -112,11 +130,5 @@ public class QuestionCloze implements IQuestion{
     
     public void setShuffleAnswer(String _shuffleAnswer){
         shuffleAnswer=_shuffleAnswer;
-    }
-    
-    public static Element getElementText(String label){
-    	Element text = new Element("text");
-    	text.appendChild(label);
-    	return text;
     }
 }
